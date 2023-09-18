@@ -4,6 +4,7 @@
     <base target="_top" />
     <link href="https://fonts.cdnfonts.com/css/kaisei-decol" rel="stylesheet" />
     <link href="https://fonts.cdnfonts.com/css/kiwi-maru" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/kaisei-opti" rel="stylesheet" />
   </head>
   <body>
     <div id="parent"></div>
@@ -29,6 +30,7 @@
       line-height: 1.5em;
       font-family: "Kiwi Maru", sans-serif;
       /* font-family: "Kaisei Decol", sans-serif; */
+      /* font-family: "Kaisei Opti", sans-serif; */
     }
 
     /* 印刷1ページ用のコンテンツはここで定義 */
@@ -36,10 +38,9 @@
       width: 210mm; /* 用紙の横幅を改めて指定 */
       height: 296.5mm; /* 高さには0.5mm余裕をもたせる */
       page-break-after: always;
-
       box-sizing: border-box;
       padding: 10mm 12mm; /* 用紙の余白 */
-      font-size: 11pt;
+      font-size: 11.5pt;
     }
 
     .card-parent {
@@ -57,13 +58,20 @@
     .card-parent.type-rule-change {
       background-color: #aed4d6;
     }
+
     .card-parent.type-special {
       background-color: #81a971;
     }
 
+    .card-parent.type-hand {
+      background-color: #a97171;
+    }
+
+    .card-parent.type-other {
+      background-color: #ccc;
+    }
     .card-parent > .title {
       display: flex;
-      font-size: 120%;
       font-weight: bold;
       border-radius: 1mm;
       height: 10%;
@@ -79,7 +87,6 @@
       height: 40%;
     }
     .card-parent > .text {
-      font-size: 110%;
       border-radius: 1mm;
       height: 44%;
       background-color: rgba(255, 255, 255, 0.5);
@@ -91,13 +98,13 @@
   <script>
     async function main() {
       const url =
-        "https://script.googleusercontent.com/macros/echo?user_content_key=aw7Cu58ctiHX0ShYgXZTV78ar-6aBwTim79EPOyLTvZiTe6542IhAFl4ZtFhnOw8xYgsNXK7PCLmBeb26uMc-SLP8BHi_9j6m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAMTKohNqgb9UJxgx-pjqt_fCUqSU037Y60nAy2R2dDMlvd9Yr_m3qf_9LcbyYNrAghoBuO9KlatIinSKlizzJRT3t8lnFGgdtz9Jw9Md8uu&lib=Mg47orMfdfxc8fViDYCAfLuIPY-NdOPag";
+        "https://script.google.com/macros/s/AKfycbxNCGBURrUOTRnB2Hy7Mj43ldnkgPSVfTZWl1RtLE88zRKIXC_adM7NIaze91-sFlX1Aw/exec";
       const res = await fetch(url);
       const txt = await new Response(res.body).text();
       const cards = JSON.parse(txt);
+      console.log(cards);
       splitted = sliceByNumber(cards, 9);
       html = splitted.map(createPage).join("\n");
-      // document.body.innerHTML = html;
       document.getElementById("parent").innerHTML = html;
     }
 
@@ -118,7 +125,7 @@
     function createCard(card) {
       let html = "";
       html += `<div class="card-parent ${card.class}">`;
-      html += `  <div class="title">${card.type}</div>`;
+      html += `  <div class="title">${card.name}</div>`;
       html += `  <div class="illustration"></div>`;
       html += `  <div class="text">`;
       html += `    <p>${card.text}</p>`;
