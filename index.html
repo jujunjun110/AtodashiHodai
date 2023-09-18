@@ -2,6 +2,8 @@
 <html>
   <head>
     <base target="_top" />
+    <link href="https://fonts.cdnfonts.com/css/kaisei-decol" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/kiwi-maru" rel="stylesheet" />
   </head>
   <body>
     <div id="parent"></div>
@@ -25,6 +27,8 @@
       -webkit-print-color-adjust: exact;
       color-adjust: exact;
       line-height: 1.5em;
+      font-family: "Kiwi Maru", sans-serif;
+      /* font-family: "Kaisei Decol", sans-serif; */
     }
 
     /* 印刷1ページ用のコンテンツはここで定義 */
@@ -54,16 +58,13 @@
       background-color: #aed4d6;
     }
     .card-parent.type-special {
-      background-color: #58a948;
+      background-color: #81a971;
     }
 
     .card-parent > .title {
       display: flex;
-      /* background-color: red; */
-
       font-size: 120%;
       font-weight: bold;
-      border: 0.5mm solid #333;
       border-radius: 1mm;
       height: 10%;
       justify-content: center;
@@ -72,15 +73,15 @@
     }
 
     .card-parent > .illustration {
-      /* background-color: blue; */
-      height: 45%;
+      background-color: white;
+      border-radius: 1mm;
+      margin: 4% 0;
+      height: 40%;
     }
     .card-parent > .text {
-      /* background-color: green; */
       font-size: 110%;
-      border: 0.5mm solid #333;
       border-radius: 1mm;
-      height: 45%;
+      height: 44%;
       background-color: rgba(255, 255, 255, 0.5);
     }
     .card-parent > .text > p {
