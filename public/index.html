@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+  </head>
+  <body>
+    ultimate janken
+  </body>
+  <style>
+    .card {
+      width: 120px;
+      border: solid 1px #333;
+    }
+    .hand {
+      background-color: #ccc;
+    }
+  </style>
+  <script>
+    const cards = [
+      { name: "グー", type: "hand" },
+      { name: "チョキ", type: "hand" },
+      { name: "パー", type: "hand" },
+      { name: "グー", type: "hand" },
+      { name: "チョキ", type: "hand" },
+      { name: "パー", type: "hand" },
+      { name: "グー", type: "hand" },
+      { name: "チョキ", type: "hand" },
+      { name: "パー", type: "hand" },
+    ];
+
+    for (const card of cards) {
+      const el = document.createElement("div");
+      el.classList.add("card");
+      el.classList.add(card.type);
+
+      el.innerHTML = card.name;
+      document.querySelector("body").appendChild(el);
+    }
+  </script>
+</html>
