@@ -4,37 +4,144 @@
     <base target="_top" />
   </head>
   <body>
-    ultimate janken3assa
+    <div class="page">
+      <div class="card-parent type-hand-change">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent type-rule-change">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent type-special">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+      <div class="card-parent">
+        <div class="title">ルール変更</div>
+        <div class="illustration"></div>
+        <div class="text">
+          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
+        </div>
+      </div>
+    </div>
   </body>
   <style>
-    .card {
-      width: 120px;
-      border: solid 1px #333;
+    /* A4縦用のベース設定 */
+    @page {
+      size: A4 portrait; /* 横の場合はlandscape */
+      margin: 0mm;
     }
-    .hand {
-      background-color: #ccc;
+
+    /* 各要素の余白リセット */
+    * {
+      margin: 0mm;
+      padding: 0mm;
+    }
+
+    /* 印刷時の調子を整える */
+    body {
+      width: 210mm; /* 用紙の横幅を改めて指定 Chrome用 */
+      -webkit-print-color-adjust: exact;
+      color-adjust: exact;
+      line-height: 1.5em;
+    }
+
+    /* 印刷1ページ用のコンテンツはここで定義 */
+    .page {
+      width: 210mm; /* 用紙の横幅を改めて指定 */
+      height: 296.5mm; /* 高さには0.5mm余裕をもたせる */
+      page-break-after: always;
+
+      box-sizing: border-box;
+      padding: 10mm 12mm; /* 用紙の余白 */
+      font-size: 11pt;
+    }
+
+    .card-parent {
+      float: left;
+      padding: 3mm;
+      box-sizing: border-box;
+      width: 59mm;
+      height: 86mm;
+      border: solid 1mm #333;
+    }
+
+    .card-parent.type-hand-change {
+      background-color: #e8b6d9;
+    }
+
+    .card-parent > .title {
+      display: flex;
+      /* background-color: red; */
+
+      font-size: 120%;
+      font-weight: bold;
+      border: 0.5mm solid #333;
+      border-radius: 1mm;
+      height: 10%;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+    }
+
+    .card-parent > .illustration {
+      /* background-color: blue; */
+      height: 45%;
+    }
+    .card-parent > .text {
+      /* background-color: green; */
+      border: 0.5mm solid #333;
+      border-radius: 1mm;
+      height: 45%;
+      background-color: #fff;
+    }
+    .card-parent > .text > p {
+      padding: 1mm;
     }
   </style>
-  <script>
-    const cards = [
-      { name: "グー", type: "hand" },
-      { name: "チョキ", type: "hand" },
-      { name: "パー", type: "hand" },
-      { name: "グー", type: "hand" },
-      { name: "チョキ", type: "hand" },
-      { name: "パー", type: "hand" },
-      { name: "グー", type: "hand" },
-      { name: "チョキ", type: "hand" },
-      { name: "パー", type: "hand" },
-    ];
-
-    for (const card of cards) {
-      const el = document.createElement("div");
-      el.classList.add("card");
-      el.classList.add(card.type);
-
-      el.innerHTML = card.name;
-      document.querySelector("body").appendChild(el);
-    }
-  </script>
 </html>
