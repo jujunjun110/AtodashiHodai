@@ -137,8 +137,8 @@
     }
 
     function createCard(card) {
-      const cardType =
-        card.type == "　" || card.type == "ハンド"
+      const cardTypeHtml =
+        card.type == "その他" || card.type == "ハンド"
           ? ""
           : `<b>[${card.type}カード]</b><br>`;
 
@@ -147,7 +147,7 @@
           <div class="title">${card.name}</div>
           <div class="illustration"></div>
           <div class="text">
-            <p>${cardType}${card.text}</p>
+            <p>${cardTypeHtml}${card.text}</p>
           </div>
         </div>
       `;
