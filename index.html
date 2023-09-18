@@ -67,6 +67,10 @@
       background-color: #a97171;
     }
 
+    .card-parent.type-hand-override {
+      background-color: #9671a9;
+    }
+
     .card-parent.type-other {
       background-color: #ccc;
     }
@@ -108,7 +112,7 @@
   <script>
     async function main() {
       const url =
-        "https://script.google.com/macros/s/AKfycbxNCGBURrUOTRnB2Hy7Mj43ldnkgPSVfTZWl1RtLE88zRKIXC_adM7NIaze91-sFlX1Aw/exec";
+        "https://script.google.com/macros/s/AKfycbyG6KtW6ueWqWANz8oO6RSbdcUkcELXhXK5rVy0gTByNh3Lso7R96GoIY0e9_qobhWLDQ/exec";
       const res = await fetch(url);
       const txt = await new Response(res.body).text();
       const cards = JSON.parse(txt);
@@ -133,16 +137,20 @@
     }
 
     function createCard(card) {
-      let html = "";
-      html += `<div class="card-parent ${card.class}">`;
-      html += `  <div class="title">${card.name}</div>`;
-      html += `  <div class="illustration"></div>`;
-      html += `  <div class="text">`;
-      html += `    <p><b>${card.type}</b><br>${card.text}</p>`;
-      html += `  </div>`;
-      html += `</div>`;
+      const cardType =
+        card.type == "　" || card.type == "ハンド"
+          ? ""
+          : `<b>[${card.type}カード]</b><br>`;
 
-      return html;
+      return `
+        <div class="card-parent ${card.class}">
+          <div class="title">${card.name}</div>
+          <div class="illustration"></div>
+          <div class="text">
+            <p>${cardType}${card.text}</p>
+          </div>
+        </div>
+      `;
     }
     main();
   </script>
