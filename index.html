@@ -112,7 +112,7 @@
   <script>
     async function main() {
       const url =
-        "https://script.google.com/macros/s/AKfycbyG6KtW6ueWqWANz8oO6RSbdcUkcELXhXK5rVy0gTByNh3Lso7R96GoIY0e9_qobhWLDQ/exec";
+        "https://script.google.com/macros/s/AKfycbzjjDvSW48QJn_2KNP0wmSOCsZAR-r_XN1zkqhl6m-0GjBepJ5HP3dRaf3yzs_KEe7NIg/exec";
       const res = await fetch(url);
       const txt = await new Response(res.body).text();
       const cards = JSON.parse(txt);
@@ -140,7 +140,7 @@
       const cardTypeHtml =
         card.type == "その他" || card.type == "ハンド"
           ? ""
-          : `<b>[${card.type}カード]</b><br>`;
+          : `<b>[${card.type}カード](${card.id})</b><br>`;
 
       return `
         <div class="card-parent ${card.class}">
