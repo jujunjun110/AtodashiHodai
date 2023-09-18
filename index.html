@@ -4,71 +4,7 @@
     <base target="_top" />
   </head>
   <body>
-    <div class="page">
-      <div class="card-parent type-hand-change">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent type-rule-change">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent type-special">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-      <div class="card-parent">
-        <div class="title">ルール変更</div>
-        <div class="illustration"></div>
-        <div class="text">
-          <p>アルファベット順で一番早い手が勝ち（チョキ、グー、パー）</p>
-        </div>
-      </div>
-    </div>
+    <div id="parent"></div>
   </body>
   <style>
     /* A4縦用のベース設定 */
@@ -112,7 +48,13 @@
     }
 
     .card-parent.type-hand-change {
-      background-color: #e8b6d9;
+      background-color: #cf818e;
+    }
+    .card-parent.type-rule-change {
+      background-color: #c8c16f;
+    }
+    .card-parent.type-special {
+      background-color: #6ba55f;
     }
 
     .card-parent > .title {
@@ -126,7 +68,7 @@
       height: 10%;
       justify-content: center;
       align-items: center;
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.5);
     }
 
     .card-parent > .illustration {
@@ -138,10 +80,51 @@
       border: 0.5mm solid #333;
       border-radius: 1mm;
       height: 45%;
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.5);
     }
     .card-parent > .text > p {
       padding: 1mm;
     }
   </style>
+  <script>
+    async function main() {
+      const url =
+        "https://script.googleusercontent.com/macros/echo?user_content_key=aw7Cu58ctiHX0ShYgXZTV78ar-6aBwTim79EPOyLTvZiTe6542IhAFl4ZtFhnOw8xYgsNXK7PCLmBeb26uMc-SLP8BHi_9j6m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAMTKohNqgb9UJxgx-pjqt_fCUqSU037Y60nAy2R2dDMlvd9Yr_m3qf_9LcbyYNrAghoBuO9KlatIinSKlizzJRT3t8lnFGgdtz9Jw9Md8uu&lib=Mg47orMfdfxc8fViDYCAfLuIPY-NdOPag";
+      const res = await fetch(url);
+      const txt = await new Response(res.body).text();
+      const cards = JSON.parse(txt);
+      splitted = sliceByNumber(cards, 9);
+      html = splitted.map(createPage).join("\n");
+      // document.body.innerHTML = html;
+      document.getElementById("parent").innerHTML = html;
+    }
+
+    function createPage(cards) {
+      let html = `<div class="page" >`;
+      html += cards.map(createCard).join("\n");
+      html += "</div>";
+      return html;
+    }
+
+    function sliceByNumber(array, number) {
+      const length = Math.ceil(array.length / number);
+      return new Array(length)
+        .fill()
+        .map((_, i) => array.slice(i * number, (i + 1) * number));
+    }
+
+    function createCard(card) {
+      let html = "";
+      html += `<div class="card-parent ${card.class}">`;
+      html += `  <div class="title">${card.type}</div>`;
+      html += `  <div class="illustration"></div>`;
+      html += `  <div class="text">`;
+      html += `    <p>${card.text}</p>`;
+      html += `  </div>`;
+      html += `</div>`;
+
+      return html;
+    }
+    main();
+  </script>
 </html>
