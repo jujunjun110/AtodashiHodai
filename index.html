@@ -80,6 +80,16 @@
       background-color: rgba(255, 255, 255, 0.5);
     }
 
+    .card-parent > .type {
+      display: flex;
+      font-weight: bold;
+      border-radius: 1mm;
+      height: 10%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
     .card-parent > .illustration {
       background-color: white;
       border-radius: 1mm;
@@ -128,7 +138,7 @@
       html += `  <div class="title">${card.name}</div>`;
       html += `  <div class="illustration"></div>`;
       html += `  <div class="text">`;
-      html += `    <p>${card.text}</p>`;
+      html += `    <p><b>${card.type}</b><br>${card.text}</p>`;
       html += `  </div>`;
       html += `</div>`;
 
