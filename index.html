@@ -74,6 +74,7 @@
     .card-parent.type-other {
       background-color: #ccc;
     }
+
     .card-parent > .title {
       display: flex;
       font-weight: bold;
@@ -106,7 +107,7 @@
       background-color: rgba(255, 255, 255, 0.5);
     }
     .card-parent > .text > p {
-      padding: 1mm;
+      padding: 2mm;
     }
   </style>
   <script>
@@ -144,13 +145,23 @@
 
       return `
         <div class="card-parent ${card.class}">
-          <div class="title">${card.name}</div>
+          <div class="title">${card.type}</div>
           <div class="illustration"></div>
           <div class="text">
-            <p>${cardTypeHtml}${card.text}</p>
+            <p>${card.text}</p>
           </div>
         </div>
       `;
+
+      // return `
+      //   <div class="card-parent ${card.class}">
+      //     <div class="title">${card.name}</div>
+      //     <div class="illustration"></div>
+      //     <div class="text">
+      //       <p>${cardTypeHtml}${card.text}</p>
+      //     </div>
+      //   </div>
+      // `;
     }
     main();
   </script>
